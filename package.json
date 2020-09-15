@@ -1,0 +1,23 @@
+{
+  "name": "rest-api-example-starter",
+  "version": "1.0.0",
+  "description": "A simple REST API using Express and body-parser",
+  "main": "./parte2/index.js",
+  "scripts": {
+    "start": "nodemon ./parte2/index.js"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "fs": "0.0.1-security",
+    "morgan": "1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
+  },
+  "keywords": [
+    "rest",
+    "express",
+    "api",
+    "body-parser"
+  ]
+}
