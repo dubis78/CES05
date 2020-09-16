@@ -26,23 +26,18 @@ router.post("/movies", (req, res) => {
     //Validamos los datos
     if (!title || !director || !year || !duration || !genre || !poster) {
       res.status(401).json({ error: "Debe completar todos los datos." });
-    } else {    
+    }
+    else{    
         const id = movies.length + 1;    
-        let newMovie = {
-        id,
-        title,
-        director,
-        year,
-        duration,
-        genre,
-        poster,
-      };
+        let newMovie = {id,title,director,year,duration,genre,poster
+    }
       movies.push(newMovie);
       const json_movies = JSON.stringify(movies);   //JSON.stringify metodo para pasar de arreglo JS a JSON    
       fs.writeFileSync("./parte2/movies.json", json_movies, "utf-8");
       res.status(201).json(movies);   //status 201 nuevo registro creado
     }
 });
+
 
 router.put("/movies/:id", (req, res) => {
   const { title, director, year, duration, genre, poster } = req.body;
@@ -62,28 +57,23 @@ router.put("/movies/:id", (req, res) => {
         movie.genre = genre;
         movie.poster = poster;
       }
-    });
-    
+    });  
     const json_movies = JSON.stringify(movies);
     fs.writeFileSync("./parte2/movies.json", json_movies, "utf-8");
     res.status(200).json(movies);
   }
 });
 
+
 router.delete("/movie/:id", (req, res) => {
   const id = req.params.id;
-  if (!id) {
-    res
-      .status(401)
-      .json({ error: "Debe especificar el id del elemento a eliminar." });
-  } else {
-    const indexMovie = movies.findIndex((movie) => movie.id === id);
+    const indexMovie = movies.findIndex((movie) => movie.id == id);
     movies.splice(indexMovie, 1);
     const json_movies = JSON.stringify(movies);
     fs.writeFileSync("./parte2/movies.json", json_movies, "utf-8");
-    res.status(200).json(movies);
-  }
+    res.status(200).json(movies);  
 });
+
 
 module.exports = router;
 
